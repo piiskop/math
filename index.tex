@@ -1,0 +1,381 @@
+% Options for packages loaded elsewhere
+\PassOptionsToPackage{unicode}{hyperref}
+\PassOptionsToPackage{hyphens}{url}
+%
+\documentclass[
+]{article}
+\usepackage{amsmath,amssymb}
+\usepackage{lmodern}
+\usepackage{ifxetex,ifluatex}
+\ifnum 0\ifxetex 1\fi\ifluatex 1\fi=0 % if pdftex
+  \usepackage[T1]{fontenc}
+  \usepackage[utf8]{inputenc}
+  \usepackage{textcomp} % provide euro and other symbols
+\else % if luatex or xetex
+  \usepackage{unicode-math}
+  \defaultfontfeatures{Scale=MatchLowercase}
+  \defaultfontfeatures[\rmfamily]{Ligatures=TeX,Scale=1}
+\fi
+% Use upquote if available, for straight quotes in verbatim environments
+\IfFileExists{upquote.sty}{\usepackage{upquote}}{}
+\IfFileExists{microtype.sty}{% use microtype if available
+  \usepackage[]{microtype}
+  \UseMicrotypeSet[protrusion]{basicmath} % disable protrusion for tt fonts
+}{}
+\makeatletter
+\@ifundefined{KOMAClassName}{% if non-KOMA class
+  \IfFileExists{parskip.sty}{%
+    \usepackage{parskip}
+  }{% else
+    \setlength{\parindent}{0pt}
+    \setlength{\parskip}{6pt plus 2pt minus 1pt}}
+}{% if KOMA class
+  \KOMAoptions{parskip=half}}
+\makeatother
+\usepackage{xcolor}
+\IfFileExists{xurl.sty}{\usepackage{xurl}}{} % add URL line breaks if available
+\IfFileExists{bookmark.sty}{\usepackage{bookmark}}{\usepackage{hyperref}}
+\hypersetup{
+  pdftitle={Kodune kontrolltöö 2021},
+  hidelinks,
+  pdfcreator={LaTeX via pandoc}}
+\urlstyle{same} % disable monospaced font for URLs
+\usepackage[margin=1in]{geometry}
+\usepackage{color}
+\usepackage{fancyvrb}
+\newcommand{\VerbBar}{|}
+\newcommand{\VERB}{\Verb[commandchars=\\\{\}]}
+\DefineVerbatimEnvironment{Highlighting}{Verbatim}{commandchars=\\\{\}}
+% Add ',fontsize=\small' for more characters per line
+\usepackage{framed}
+\definecolor{shadecolor}{RGB}{248,248,248}
+\newenvironment{Shaded}{\begin{snugshade}}{\end{snugshade}}
+\newcommand{\AlertTok}[1]{\textcolor[rgb]{0.94,0.16,0.16}{#1}}
+\newcommand{\AnnotationTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\newcommand{\AttributeTok}[1]{\textcolor[rgb]{0.77,0.63,0.00}{#1}}
+\newcommand{\BaseNTok}[1]{\textcolor[rgb]{0.00,0.00,0.81}{#1}}
+\newcommand{\BuiltInTok}[1]{#1}
+\newcommand{\CharTok}[1]{\textcolor[rgb]{0.31,0.60,0.02}{#1}}
+\newcommand{\CommentTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textit{#1}}}
+\newcommand{\CommentVarTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\newcommand{\ConstantTok}[1]{\textcolor[rgb]{0.00,0.00,0.00}{#1}}
+\newcommand{\ControlFlowTok}[1]{\textcolor[rgb]{0.13,0.29,0.53}{\textbf{#1}}}
+\newcommand{\DataTypeTok}[1]{\textcolor[rgb]{0.13,0.29,0.53}{#1}}
+\newcommand{\DecValTok}[1]{\textcolor[rgb]{0.00,0.00,0.81}{#1}}
+\newcommand{\DocumentationTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\newcommand{\ErrorTok}[1]{\textcolor[rgb]{0.64,0.00,0.00}{\textbf{#1}}}
+\newcommand{\ExtensionTok}[1]{#1}
+\newcommand{\FloatTok}[1]{\textcolor[rgb]{0.00,0.00,0.81}{#1}}
+\newcommand{\FunctionTok}[1]{\textcolor[rgb]{0.00,0.00,0.00}{#1}}
+\newcommand{\ImportTok}[1]{#1}
+\newcommand{\InformationTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\newcommand{\KeywordTok}[1]{\textcolor[rgb]{0.13,0.29,0.53}{\textbf{#1}}}
+\newcommand{\NormalTok}[1]{#1}
+\newcommand{\OperatorTok}[1]{\textcolor[rgb]{0.81,0.36,0.00}{\textbf{#1}}}
+\newcommand{\OtherTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{#1}}
+\newcommand{\PreprocessorTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textit{#1}}}
+\newcommand{\RegionMarkerTok}[1]{#1}
+\newcommand{\SpecialCharTok}[1]{\textcolor[rgb]{0.00,0.00,0.00}{#1}}
+\newcommand{\SpecialStringTok}[1]{\textcolor[rgb]{0.31,0.60,0.02}{#1}}
+\newcommand{\StringTok}[1]{\textcolor[rgb]{0.31,0.60,0.02}{#1}}
+\newcommand{\VariableTok}[1]{\textcolor[rgb]{0.00,0.00,0.00}{#1}}
+\newcommand{\VerbatimStringTok}[1]{\textcolor[rgb]{0.31,0.60,0.02}{#1}}
+\newcommand{\WarningTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\usepackage{longtable,booktabs,array}
+\usepackage{calc} % for calculating minipage widths
+% Correct order of tables after \paragraph or \subparagraph
+\usepackage{etoolbox}
+\makeatletter
+\patchcmd\longtable{\par}{\if@noskipsec\mbox{}\fi\par}{}{}
+\makeatother
+% Allow footnotes in longtable head/foot
+\IfFileExists{footnotehyper.sty}{\usepackage{footnotehyper}}{\usepackage{footnote}}
+\makesavenoteenv{longtable}
+\usepackage{graphicx}
+\makeatletter
+\def\maxwidth{\ifdim\Gin@nat@width>\linewidth\linewidth\else\Gin@nat@width\fi}
+\def\maxheight{\ifdim\Gin@nat@height>\textheight\textheight\else\Gin@nat@height\fi}
+\makeatother
+% Scale images if necessary, so that they will not overflow the page
+% margins by default, and it is still possible to overwrite the defaults
+% using explicit options in \includegraphics[width, height, ...]{}
+\setkeys{Gin}{width=\maxwidth,height=\maxheight,keepaspectratio}
+% Set default figure placement to htbp
+\makeatletter
+\def\fps@figure{htbp}
+\makeatother
+\setlength{\emergencystretch}{3em} % prevent overfull lines
+\providecommand{\tightlist}{%
+  \setlength{\itemsep}{0pt}\setlength{\parskip}{0pt}}
+\setcounter{secnumdepth}{5}
+\usepackage{booktabs}
+\usepackage{longtable}
+\usepackage{array}
+\usepackage{multirow}
+\usepackage{wrapfig}
+\usepackage{float}
+\usepackage{colortbl}
+\usepackage{pdflscape}
+\usepackage{tabu}
+\usepackage{threeparttable}
+\usepackage{threeparttablex}
+\usepackage[normalem]{ulem}
+\usepackage{makecell}
+\usepackage{xcolor}
+\ifluatex
+  \usepackage{selnolig}  % disable illegal ligatures
+\fi
+
+\title{Kodune kontrolltöö 2021}
+\author{}
+\date{\vspace{-2.5em}}
+
+\begin{document}
+\maketitle
+
+{
+\setcounter{tocdepth}{2}
+\tableofcontents
+}
+\#Kodune kontrolltöö 2021
+
+\hypertarget{eelandmed}{%
+\subsection{Eelandmed}\label{eelandmed}}
+
+a - üliõpilase koodi viimane number (vt ÕIS)
+
+b - üliõpilase koodi eelviimane number.
+
+Minu kui üliõpilase kood on \emph{210951MLLB.LT}. Selle viimane number on \emph{1}. Mu üliõpilaskoodi eelviimane number on \emph{5}. Seega \emph{a = 1} ja \emph{b = 5}.
+
+\hypertarget{funktsiooni-uurimine}{%
+\subsection{Funktsiooni uurimine}\label{funktsiooni-uurimine}}
+
+Uurida funktsiooni \(y = (a - b + .5) * e ^ \frac{x ^ 2}{a})\). Leida \(X\), \(X ^ +\), \(X ^ -\), \(X ^ 0\), \(X ^ \uparrow\), \(X ^ \downarrow\), ekstreemumid, \(\overset{\smile}{X}\), \(\overset{\frown}{X}\), käänupunktid, asümptoodid, skitseerida graafik.
+
+Asendades üliõpilaskoodi numbrid muutujate väärtusteks, on uuritav funktsioon \(y = (1 - 5 + .5) * e ^ -\frac{x ^ 2}{1}\). See on lihtsustatult \(y = -3.5 * e ^ {-x ^ 2}\).
+
+Määramispiirkond on terve reaalarvude hulk, kuna mis tahes arvuga \emph{e}´d astendades on tulemuseks mingi reaalarv. Seega \(X = \mathbb{R}\).
+
+Nullkohtade väljaselgitamiseks panen funktsiooni võrduma nulliga:
+\[-3.5 * e ^ {-x ^ 2} === 0\]
+
+Korrutis on null, kui vähemalt üks tegur on null. Kas \(e ^ {- x ^ 2}\) võib olla null? Ei või, sest mis tahes arvu selle va konstandiga, mille väärtus on üle kahe, astendades, ei saavuta me null mitte mingi nipiga selles pühas rohelises maailmas. Seetõttu võime julgelt väita, et sellel funktsioonil nullkohti ei ole kohe mitte ja seda kinnitab ka järgnev püha automaatarvutus:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{library}\NormalTok{(Ryacas)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## 
+## Attaching package: 'Ryacas'
+\end{verbatim}
+
+\begin{verbatim}
+## The following object is masked from 'package:stats':
+## 
+##     integrate
+\end{verbatim}
+
+\begin{verbatim}
+## The following objects are masked from 'package:base':
+## 
+##     %*%, diag, diag<-, lower.tri, upper.tri
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{yac}\NormalTok{(}\StringTok{"Solve({-}3.5 * e \^{} ({-}x \^{} 2) == 0, x)"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] "{x==Sqrt(Abs(-Infinity/Ln(e)))*Complex(Cos(Arg(Infinity/Ln(e))/2),Sin(Arg(Infinity/Ln(e))/2)),x==Sqrt(Abs(-Infinity/Ln(e)))*Complex(Cos((Arg(Infinity/Ln(e))+2*Pi)/2),Sin((Arg(Infinity/Ln(e))+2*Pi)/2))}"
+\end{verbatim}
+
+Seega \(X ^ 0 \in \varnothing\).
+
+Positiivuspiirkonna väljaselgitamiseks on vaja võrrelda funktsiooni nulliga, nii et funktsiooni väärtused oleksid positiivsed. Kas need saavad olla positiivsed? Kui me seda va konstanti, ma ei hakka seda isegi nimetama, astendame mis tahes arvuga, saame tulemuseks positiivse arvu, sest see va konstant, Euleri arv, on ise posiitiivne arv. Kuna see kupatus on korrutatud -3.5'ga, siis on selle funktsiooni tulemuseks mis tahes x'i väärtuse korral negatiivne arv. Seetõttu \(X ^ + \in \varnothing\) ja \(X ^ - \in \mathbb{R}\).
+
+Ekstreemumite ning kasvamis- ja kahanemisvahemike väljaselgitamiseks on vajalik arvutada funktsiooni tuletis. Sa võid ju ette kujutada, et see on mingi kole protseduur, ometi ei pruugi sul õigus olla. Ma siis nüüd arvutan esmalt selle tuletise käsitsi:
+
+\[\frac{d(-3.5 * e ^ {-x ^ 2})}{d(x)} = -3.5 * e ^ {-x ^ 2} * (-2) * x === \frac{7 * x}{ e ^ {x ^ 2}}\]
+
+Kas arvutasin õigesti?
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{functionToUse }\OtherTok{=} \FunctionTok{expression}\NormalTok{(}\SpecialCharTok{{-}}\FloatTok{3.5} \SpecialCharTok{*}\NormalTok{ e }\SpecialCharTok{\^{}}\NormalTok{ (}\SpecialCharTok{{-}}\NormalTok{x }\SpecialCharTok{\^{}} \DecValTok{2}\NormalTok{))}
+\NormalTok{derivative }\OtherTok{=} \FunctionTok{D}\NormalTok{(functionToUse, }\StringTok{"x"}\NormalTok{)}
+\NormalTok{derivative}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## 3.5 * (e^(-x^2) * (log(e) * (2 * x)))
+\end{verbatim}
+
+Selleks, et välja selgitada, kus on ekstreemume, kus funktsiooni graafik on tõusev, kus langev, võrdustan tuletise esmalt nulliga:
+
+\[\frac{7 * x}{ e ^ {x ^ 2}} === 0\]
+
+\[x = 0\]
+
+Sain teada, et kohal \emph{x = 0} võib olla ekstreemum. Siiski kontrollin selle järele:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{library}\NormalTok{(Ryacas)}
+\FunctionTok{yac}\NormalTok{(}\StringTok{"Solve(7 * x / e \^{} x \^{} 2 == 0, x)"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] "{x==0}"
+\end{verbatim}
+
+Kas see on ekstreemum ja kui on, siis milline, selgub tabelist:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{x }\OtherTok{=} \FunctionTok{c}\NormalTok{(}\StringTok{"\textless{} 0"}\NormalTok{, }\DecValTok{0}\NormalTok{, }\StringTok{"\textgreater{} 0"}\NormalTok{)}
+\NormalTok{y }\OtherTok{=} \FunctionTok{c}\NormalTok{(}\StringTok{"\textgreater{} {-}3.5"}\NormalTok{, }\SpecialCharTok{{-}}\FloatTok{3.5}\NormalTok{, }\StringTok{"\textgreater{} {-}3.5"}\NormalTok{)}
+\NormalTok{extrema }\OtherTok{=} \FunctionTok{data.frame}\NormalTok{(}\AttributeTok{x =}\NormalTok{ x, }\AttributeTok{y =}\NormalTok{ y)}
+\FunctionTok{colnames}\NormalTok{(extrema) }\OtherTok{=} \FunctionTok{c}\NormalTok{(}\StringTok{"x"}\NormalTok{, }\StringTok{"y"}\NormalTok{)}
+\FunctionTok{library}\NormalTok{(kableExtra)}
+\NormalTok{extrema }\SpecialCharTok{\%\textgreater{}\%} \FunctionTok{kbl}\NormalTok{(}\AttributeTok{caption =} \StringTok{"Funktsiooni väärtused sõltuvalt võimalikust ekstreemumist"}\NormalTok{) }\SpecialCharTok{\%\textgreater{}\%} \FunctionTok{kable\_styling}\NormalTok{(}\AttributeTok{bootstrap\_options =} \FunctionTok{c}\NormalTok{(}\StringTok{"striped"}\NormalTok{, }\StringTok{"hover"}\NormalTok{))}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{table}
+
+\caption{\label{tab:unnamed-chunk-4}Funktsiooni väärtused sõltuvalt võimalikust ekstreemumist}
+\centering
+\begin{tabular}[t]{l|l}
+\hline
+x & y\\
+\hline
+< 0 & > -3.5\\
+\hline
+0 & -3.5\\
+\hline
+> 0 & > -3.5\\
+\hline
+\end{tabular}
+\end{table}
+
+Kummalgi pool \emph{nulli} on funktsiooni väljund suurem kui kohal \emph{0}. See tähendab, et kohal \emph{0} on funktsioonil miinimum. Funktsiooni miinimumpunkt on \((0, -3.5)\).
+
+Kuna \emph{nullist} väiksemate väärtuste korral on funktsiooni väljund \emph{-3.5}'st suurem, siis on funktsiooni graafik \emph{nullist} väiksemate väärtuste puhul vasakult paremale ülevalt alla ehk n-ö langev. See tähendab, et *\(X ^ \downarrow = (-\infty, 0)\).
+
+Kuna \emph{nullist} suuremate sisendväärtuste korral on funktsiooni väljund \emph{-3.5}'st suurem, siis on funktsiooni graafik \emph{nullist} suuremate väärtuste puhul vasakult paremale alt ülevale ehk n-ö tõusev. See tähendab, et *\(X ^ \uparrow = (0, \infty)\).
+
+Kumerus- ja nõgususpiirkonna ning käänupunktide arvutamiseks arvutan teist järku tuletise:
+
+\[\frac{d(\frac{7 * x}{e ^ {x ^ 2}})}{d(x)} = \frac{7 * (e ^ {x ^ 2} * 1 - x * e ^ {x ^ 2} * 2 * x)}{e ^ {2 * x ^ 2}} === \frac{7 * e ^ {x ^ 2} * (1 - 2 * x ^ 2)}{e ^ {2 * x ^ 2}} === \frac{7 * (1 - 2 * x ^ 2)}{e ^ {x ^ 2}}\]
+Kontrollin:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{derivativeToUse }\OtherTok{=} \FunctionTok{expression}\NormalTok{(}\DecValTok{7} \SpecialCharTok{*}\NormalTok{ x }\SpecialCharTok{/}\NormalTok{ e }\SpecialCharTok{\^{}}\NormalTok{ (x }\SpecialCharTok{\^{}} \DecValTok{2}\NormalTok{))}
+\NormalTok{secondDerivative }\OtherTok{=} \FunctionTok{D}\NormalTok{(derivativeToUse, }\StringTok{"x"}\NormalTok{)}
+\NormalTok{secondDerivative}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## 7/e^(x^2) - 7 * x * (e^(x^2) * (log(e) * (2 * x)))/(e^(x^2))^2
+\end{verbatim}
+
+Käänukohtade arvutamiseks võrdsustan teist järku tuletise nulliga:
+
+\[\frac{7 * (1 - 2 * x ^ 2)}{e ^ {x ^ 2}} === 0\]
+
+\[x = \pm \frac{1}{\sqrt{2}}\]
+
+On võimalus, et kohtadel \(x === \pm\frac{1}{\sqrt{2}}\) on käänd. Seda kontrollin tabeli abil:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{xForSkew }\OtherTok{=} \FunctionTok{c}\NormalTok{(}\StringTok{"\textless{} ${-}}\SpecialCharTok{\textbackslash{}\textbackslash{}}\StringTok{frac\{1\}\{}\SpecialCharTok{\textbackslash{}\textbackslash{}}\StringTok{sqrt\{2\}\}$"}\NormalTok{, }\StringTok{"${-}}\SpecialCharTok{\textbackslash{}\textbackslash{}}\StringTok{frac\{1\}\{}\SpecialCharTok{\textbackslash{}\textbackslash{}}\StringTok{sqrt\{2\}\}$"}\NormalTok{, }\StringTok{"\textgreater{} ${-}}\SpecialCharTok{\textbackslash{}\textbackslash{}}\StringTok{frac\{1\}\{}\SpecialCharTok{\textbackslash{}\textbackslash{}}\StringTok{sqrt\{2\}\}$ \&\& \textless{} $}\SpecialCharTok{\textbackslash{}\textbackslash{}}\StringTok{frac\{1\}\{}\SpecialCharTok{\textbackslash{}\textbackslash{}}\StringTok{sqrt\{2\}\}$"}\NormalTok{, }\StringTok{"$}\SpecialCharTok{\textbackslash{}\textbackslash{}}\StringTok{frac\{1\}\{}\SpecialCharTok{\textbackslash{}\textbackslash{}}\StringTok{sqrt\{2\}\}$"}\NormalTok{, }\StringTok{"\textgreater{} $}\SpecialCharTok{\textbackslash{}\textbackslash{}}\StringTok{frac\{1\}\{}\SpecialCharTok{\textbackslash{}\textbackslash{}}\StringTok{sqrt\{2\}\}$"}\NormalTok{)}
+\NormalTok{yForSkew }\OtherTok{=} \FunctionTok{c}\NormalTok{(}\StringTok{"\textless{} 0"}\NormalTok{, }\SpecialCharTok{{-}}\FloatTok{3.5} \SpecialCharTok{/} \FunctionTok{sqrt}\NormalTok{(}\FunctionTok{exp}\NormalTok{(}\DecValTok{1}\NormalTok{)), }\StringTok{"\textgreater{} 0"}\NormalTok{, }\SpecialCharTok{{-}}\FloatTok{3.5} \SpecialCharTok{/} \FunctionTok{sqrt}\NormalTok{(}\FunctionTok{exp}\NormalTok{(}\DecValTok{1}\NormalTok{)), }\StringTok{"\textless{} 0"}\NormalTok{)}
+\NormalTok{skew }\OtherTok{=} \FunctionTok{data.frame}\NormalTok{(}\AttributeTok{x =}\NormalTok{ xForSkew, }\AttributeTok{y =}\NormalTok{ yForSkew)}
+\FunctionTok{colnames}\NormalTok{(skew) }\OtherTok{=} \FunctionTok{c}\NormalTok{(}\StringTok{"x"}\NormalTok{, }\StringTok{"$}\SpecialCharTok{\textbackslash{}\textbackslash{}}\StringTok{frac\{d(}\SpecialCharTok{\textbackslash{}\textbackslash{}}\StringTok{frac\{7 * (1 {-} 2 * x \^{} 2)\}\{e \^{} \{x \^{} 2\}\})\}\{d(x)\}$"}\NormalTok{)}
+\FunctionTok{library}\NormalTok{(kableExtra)}
+\NormalTok{skew }\SpecialCharTok{\%\textgreater{}\%} \FunctionTok{kbl}\NormalTok{(}\AttributeTok{caption =} \StringTok{"Funktsiooni teist järku tuletiste väärtused sõltuvalt võimalikest käänukohtadest"}\NormalTok{) }\SpecialCharTok{\%\textgreater{}\%} \FunctionTok{kable\_styling}\NormalTok{(}\AttributeTok{bootstrap\_options =} \FunctionTok{c}\NormalTok{(}\StringTok{"striped"}\NormalTok{, }\StringTok{"hover"}\NormalTok{))}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{table}
+
+\caption{\label{tab:unnamed-chunk-6}Funktsiooni teist järku tuletiste väärtused sõltuvalt võimalikest käänukohtadest}
+\centering
+\begin{tabular}[t]{l|l}
+\hline
+x & \$\textbackslash{}frac\{d(\textbackslash{}frac\{7 * (1 - 2 * x \textasciicircum{} 2)\}\{e \textasciicircum{} \{x \textasciicircum{} 2\}\})\}\{d(x)\}\$\\
+\hline
+< \$-\textbackslash{}frac\{1\}\{\textbackslash{}sqrt\{2\}\}\$ & < 0\\
+\hline
+\$-\textbackslash{}frac\{1\}\{\textbackslash{}sqrt\{2\}\}\$ & -2.12285730899422\\
+\hline
+> \$-\textbackslash{}frac\{1\}\{\textbackslash{}sqrt\{2\}\}\$ \&\& < \$\textbackslash{}frac\{1\}\{\textbackslash{}sqrt\{2\}\}\$ & > 0\\
+\hline
+\$\textbackslash{}frac\{1\}\{\textbackslash{}sqrt\{2\}\}\$ & -2.12285730899422\\
+\hline
+> \$\textbackslash{}frac\{1\}\{\textbackslash{}sqrt\{2\}\}\$ & < 0\\
+\hline
+\end{tabular}
+\end{table}
+
+Tabelist näeme, et kummastki võimalikust käänukohast vahetult väiksema ja suurema sisendi puhul on funktsiooni teist järku tuletise väärtus erimärgiline, mis tähendab, et mõlemad potentsiaalsed käänukohad on reaalsed käänukohad. Käänupunktid on \((-\frac{1}{\sqrt{2}}, -\frac{3.5}{\sqrt{e}})\) ja \((\frac{1}{\sqrt{2}}, -\frac{3.5}{\sqrt{e}})\). Nõgususpiirkonnas on funktsiooni teist järku tuletise väärtused positiivsed, seetõttu \(\overset{\smile}{X} = (-\frac{1}{\sqrt{2}}, \frac{1}{\sqrt{2}})\). Kumeruspiirkonnas on funktsiooni teist järku tuletise väärtused negatiivsed, seetõttu \(\overset{\frown}{X} = (-\infty, -\frac{1}{\sqrt{2}}) \cup (\frac{1}{\sqrt{2}}, \infty)\).
+
+Vertikaalseid asümptoote funktsioonil pole, kuna määramispiirkond hõlmab terve reaalarvude hulga. Kuna eksisteerib miinimumpunkt, kuid mitte maksimumpunkt, siis eksisteerib üks horisontaalne asümptoot ning selle saan algebraliselt välja selgitada piirväärtuse abil:
+
+\[\lim_{x \to -\infty} (-3.5 * e ^ {-x ^ 2}) = 0\]
+
+ja
+
+\[\lim_{x \to \infty} (-3.5 * e ^ {-x ^ 2}) = 0\]
+
+Nimelt, kui suvalist lõpmatust ruudustada, on tulemuseks lõpmatus ja kui lõpmatusega mittelõpmatust jagada, on piirväärtuseks \emph{null}. Seetõttu on funktsiooni asümptoot \emph{y = 0}.
+
+Funktsiooni graafik näeb välja selline:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{plot}\NormalTok{(}\DecValTok{1}\NormalTok{, }
+     \AttributeTok{xlim =} \FunctionTok{c}\NormalTok{(}\SpecialCharTok{{-}}\DecValTok{2}\NormalTok{, }\DecValTok{2}\NormalTok{), }\AttributeTok{ylim =} \FunctionTok{c}\NormalTok{(}\SpecialCharTok{{-}}\DecValTok{4}\NormalTok{, }\DecValTok{1}\NormalTok{),}
+     \AttributeTok{type =} \StringTok{"n"}\NormalTok{, }
+     \AttributeTok{main =} \FunctionTok{expression}\NormalTok{(}\SpecialCharTok{{-}}\FunctionTok{frac}\NormalTok{(}\FloatTok{3.5}\NormalTok{,e }\SpecialCharTok{\^{}}\NormalTok{ x }\SpecialCharTok{\^{}} \DecValTok{2}\NormalTok{)),}
+     \AttributeTok{ylab =} \StringTok{"y"}\NormalTok{, }\AttributeTok{xlab =} \StringTok{"x"}\NormalTok{)}
+\FunctionTok{abline}\NormalTok{(}\AttributeTok{h =} \DecValTok{0}\NormalTok{)}
+\FunctionTok{abline}\NormalTok{(}\AttributeTok{v =} \DecValTok{0}\NormalTok{)}
+\FunctionTok{curve}\NormalTok{(}\AttributeTok{expr =} \SpecialCharTok{{-}}\FloatTok{3.5} \SpecialCharTok{*} \FunctionTok{exp}\NormalTok{(}\DecValTok{1}\NormalTok{) }\SpecialCharTok{\^{}}\NormalTok{ \{}\SpecialCharTok{{-}}\NormalTok{x }\SpecialCharTok{\^{}} \DecValTok{2}\NormalTok{\}, }\AttributeTok{from =} \SpecialCharTok{{-}}\DecValTok{2}\NormalTok{, }\AttributeTok{to =} \DecValTok{2}\NormalTok{, }\AttributeTok{ylab =} \StringTok{"y"}\NormalTok{, }\AttributeTok{add =} \ConstantTok{TRUE}\NormalTok{, }\AttributeTok{col =} \StringTok{"blue"}\NormalTok{)}
+\FunctionTok{points}\NormalTok{(}\SpecialCharTok{{-}}\DecValTok{1} \SpecialCharTok{/} \FunctionTok{sqrt}\NormalTok{(}\DecValTok{2}\NormalTok{), }\SpecialCharTok{{-}}\FloatTok{3.5} \SpecialCharTok{/} \FunctionTok{sqrt}\NormalTok{(}\FunctionTok{exp}\NormalTok{(}\DecValTok{1}\NormalTok{)))}
+\FunctionTok{points}\NormalTok{(}\DecValTok{0}\NormalTok{, }\SpecialCharTok{{-}}\FloatTok{3.5}\NormalTok{)}
+\FunctionTok{points}\NormalTok{(}\DecValTok{1} \SpecialCharTok{/} \FunctionTok{sqrt}\NormalTok{(}\DecValTok{2}\NormalTok{), }\SpecialCharTok{{-}}\FloatTok{3.5} \SpecialCharTok{/} \FunctionTok{sqrt}\NormalTok{(}\FunctionTok{exp}\NormalTok{(}\DecValTok{1}\NormalTok{)))}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{index_files/figure-latex/unnamed-chunk-7-1.pdf}
+
+\hypertarget{tuletised}{%
+\subsection{Tuletised}\label{tuletised}}
+
+\hypertarget{esimene-tuletis}{%
+\subsubsection{Esimene tuletis}\label{esimene-tuletis}}
+
+\[y = ln[(a + 9) * x + b] === ln((1 + 9) * x + 5) === ln(10 * x + 5)\]
+
+\[\frac{d(y)}{d(x)} = \frac{1}{10 * x + 5} * 10 === \frac{10}{10 * x + 5}\]
+
+\hypertarget{teine-tuletis}{%
+\subsubsection{Teine tuletis}\label{teine-tuletis}}
+
+\[y = (a + 2) * (sin(\frac{x}{2})) ^ 4 === (1 + 2) * (sin(\frac{x}{2})) ^ 4 === 3 * (sin(\frac{x}{2})) ^ 4\]
+
+\[\frac{d(y)}{d(x)} = 3 * 4 * (sin(\frac{x}{2})) ^ 3 * cos(\frac{x}{2}) * \frac{1}{2} === 6 * (sin(\frac{x}{2})) ^ 3 * cos(\frac{x}{2})\]
+
+\end{document}

@@ -1,0 +1,8 @@
+name: "Matemaatika"
+navbar:
+  title: "Matemaatika"
+  left:
+    - text: "Funktsiooni uurimine"
+      href: index.html
+    - text: "Autor"
+      href: about.html
