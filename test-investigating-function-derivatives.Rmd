@@ -1,0 +1,156 @@
+---
+title: "Kodune kontrolltöö 2021"
+output:
+  bookdown::html_document2:
+    toc: TRUE
+    toc_float: TRUE
+---
+
+#Kodune kontrolltöö 2021
+
+## Eelandmed
+
+a - üliõpilase koodi viimane number (vt ÕIS)
+
+b - üliõpilase koodi eelviimane number.
+
+Minu kui üliõpilase kood on *210951MLLB.LT*. Selle viimane number on *1*. Mu üliõpilaskoodi eelviimane number on *5*. Seega *a = 1* ja *b = 5*.
+
+## Funktsiooni uurimine
+ 
+Uurida funktsiooni $y = (a - b + .5) * e ^ \frac{x ^ 2}{a})$. Leida $X$, $X ^ +$, $X ^ -$, $X ^ 0$, $X ^ \uparrow$, $X ^ \downarrow$, ekstreemumid, $\overset{\smile}{X}$, $\overset{\frown}{X}$, käänupunktid, asümptoodid, skitseerida graafik.
+
+Asendades üliõpilaskoodi numbrid muutujate väärtusteks, on uuritav funktsioon $y = (1 - 5 + .5) * e ^ -\frac{x ^ 2}{1}$. See on lihtsustatult $y = -3.5 * e ^ {-x ^ 2}$.
+
+Määramispiirkond on terve reaalarvude hulk, kuna mis tahes arvuga *e*´d astendades on tulemuseks mingi reaalarv. Seega $X = \mathbb{R}$.
+
+Nullkohtade väljaselgitamiseks panen funktsiooni võrduma nulliga:
+$$-3.5 * e ^ {-x ^ 2} === 0$$
+
+Korrutis on null, kui vähemalt üks tegur on null. Kas $e ^ {- x ^ 2}$ võib olla null? Ei või, sest mis tahes arvu selle va konstandiga, mille väärtus on üle kahe, astendades, ei saavuta me null mitte mingi nipiga selles pühas rohelises maailmas. Seetõttu võime julgelt väita, et sellel funktsioonil nullkohti ei ole kohe mitte ja seda kinnitab ka järgnev püha automaatarvutus:
+
+```{r}
+library(Ryacas)
+
+yac("Solve(-3.5 * e ^ (-x ^ 2) == 0, x)")
+```
+
+Seega $X ^ 0 \in \varnothing$.
+
+Positiivuspiirkonna väljaselgitamiseks on vaja võrrelda funktsiooni nulliga, nii et funktsiooni väärtused oleksid positiivsed. Kas need saavad olla positiivsed? Kui me seda va konstanti, ma ei hakka seda isegi nimetama, astendame mis tahes arvuga, saame tulemuseks positiivse arvu, sest see va konstant, Euleri arv, on ise posiitiivne arv. Kuna see kupatus on korrutatud -3.5'ga, siis on selle funktsiooni tulemuseks mis tahes x'i väärtuse korral negatiivne arv. Seetõttu $X ^ + \in \varnothing$ ja $X ^ - \in \mathbb{R}$.
+
+Ekstreemumite ning kasvamis- ja kahanemisvahemike väljaselgitamiseks on vajalik arvutada funktsiooni tuletis. Sa võid ju ette kujutada, et see on mingi kole protseduur, ometi ei pruugi sul õigus olla. Ma siis nüüd arvutan esmalt selle tuletise käsitsi:
+
+$$\frac{d(-3.5 * e ^ {-x ^ 2})}{d(x)} = -3.5 * e ^ {-x ^ 2} * (-2) * x === \frac{7 * x}{ e ^ {x ^ 2}}$$
+
+Kas arvutasin õigesti?
+
+```{r}
+functionToUse = expression(-3.5 * e ^ (-x ^ 2))
+derivative = D(functionToUse, "x")
+derivative
+
+```
+
+Selleks, et välja selgitada, kus on ekstreemume, kus funktsiooni graafik on tõusev, kus langev, võrdustan tuletise esmalt nulliga:
+
+$$\frac{7 * x}{ e ^ {x ^ 2}} === 0$$
+
+$$x = 0$$
+
+Sain teada, et kohal *x = 0* võib olla ekstreemum. Siiski kontrollin selle järele:
+
+```{r}
+library(Ryacas)
+yac("Solve(7 * x / e ^ x ^ 2 == 0, x)")
+```
+
+Kas see on ekstreemum ja kui on, siis milline, selgub tabelist:
+
+```{r}
+x = c("< 0", 0, "> 0")
+y = c("> -3.5", -3.5, "> -3.5")
+extrema = data.frame(x = x, y = y)
+colnames(extrema) = c("x", "y")
+library(kableExtra)
+extrema %>% kbl(caption = "Funktsiooni väärtused sõltuvalt võimalikust ekstreemumist") %>% kable_styling(bootstrap_options = c("striped", "hover"))
+
+```
+
+Kummalgi pool *nulli* on funktsiooni väljund suurem kui kohal *0*. See tähendab, et kohal *0* on funktsioonil miinimum. Funktsiooni miinimumpunkt on $(0, -3.5)$.
+
+Kuna *nullist* väiksemate väärtuste korral on funktsiooni väljund *-3.5*'st suurem, siis on funktsiooni graafik *nullist* väiksemate väärtuste puhul vasakult paremale ülevalt alla ehk n-ö langev. See tähendab, et *$X ^ \downarrow = (-\infty, 0)$.
+
+Kuna *nullist* suuremate sisendväärtuste korral on funktsiooni väljund *-3.5*'st suurem, siis on funktsiooni graafik *nullist* suuremate väärtuste puhul vasakult paremale alt ülevale ehk n-ö tõusev. See tähendab, et *$X ^ \uparrow = (0, \infty)$.
+
+Kumerus- ja nõgususpiirkonna ning käänupunktide arvutamiseks arvutan teist järku tuletise:
+
+$$\frac{d(\frac{7 * x}{e ^ {x ^ 2}})}{d(x)} = \frac{7 * (e ^ {x ^ 2} * 1 - x * e ^ {x ^ 2} * 2 * x)}{e ^ {2 * x ^ 2}} === \frac{7 * e ^ {x ^ 2} * (1 - 2 * x ^ 2)}{e ^ {2 * x ^ 2}} === \frac{7 * (1 - 2 * x ^ 2)}{e ^ {x ^ 2}}$$
+Kontrollin:
+
+```{r}
+derivativeToUse = expression(7 * x / e ^ (x ^ 2))
+secondDerivative = D(derivativeToUse, "x")
+secondDerivative
+
+```
+
+Käänukohtade arvutamiseks võrdsustan teist järku tuletise nulliga:
+
+$$\frac{7 * (1 - 2 * x ^ 2)}{e ^ {x ^ 2}} === 0$$
+
+$$x = \pm \frac{1}{\sqrt{2}}$$
+
+On võimalus, et kohtadel $x === \pm\frac{1}{\sqrt{2}}$ on käänd. Seda kontrollin tabeli abil:
+
+```{r}
+xForSkew = c("< $-\\frac{1}{\\sqrt{2}}$", "$-\\frac{1}{\\sqrt{2}}$", "> $-\\frac{1}{\\sqrt{2}}$ && < $\\frac{1}{\\sqrt{2}}$", "$\\frac{1}{\\sqrt{2}}$", "> $\\frac{1}{\\sqrt{2}}$")
+yForSkew = c("< 0", -3.5 / sqrt(exp(1)), "> 0", -3.5 / sqrt(exp(1)), "< 0")
+skew = data.frame(x = xForSkew, y = yForSkew)
+colnames(skew) = c("x", "$\\frac{d(\\frac{7 * (1 - 2 * x ^ 2)}{e ^ {x ^ 2}})}{d(x)}$")
+library(kableExtra)
+skew %>% kbl(caption = "Funktsiooni teist järku tuletiste väärtused sõltuvalt võimalikest käänukohtadest") %>% kable_styling(bootstrap_options = c("striped", "hover"))
+
+```
+
+Tabelist näeme, et kummastki võimalikust käänukohast vahetult väiksema ja suurema sisendi puhul on funktsiooni teist järku tuletise väärtus erimärgiline, mis tähendab, et mõlemad potentsiaalsed käänukohad on reaalsed käänukohad. Käänupunktid on $(-\frac{1}{\sqrt{2}}, -\frac{3.5}{\sqrt{e}})$ ja $(\frac{1}{\sqrt{2}}, -\frac{3.5}{\sqrt{e}})$. Nõgususpiirkonnas on funktsiooni teist järku tuletise väärtused positiivsed, seetõttu $\overset{\smile}{X} = (-\frac{1}{\sqrt{2}}, \frac{1}{\sqrt{2}})$. Kumeruspiirkonnas on funktsiooni teist järku tuletise väärtused negatiivsed, seetõttu $\overset{\frown}{X} = (-\infty, -\frac{1}{\sqrt{2}}) \cup (\frac{1}{\sqrt{2}}, \infty)$.
+
+Vertikaalseid asümptoote funktsioonil pole, kuna määramispiirkond hõlmab terve reaalarvude hulga. Kuna eksisteerib miinimumpunkt, kuid mitte maksimumpunkt, siis eksisteerib üks horisontaalne asümptoot ning selle saan algebraliselt välja selgitada piirväärtuse abil:
+
+$$\lim_{x \to -\infty} (-3.5 * e ^ {-x ^ 2}) = 0$$
+
+ja
+
+$$\lim_{x \to \infty} (-3.5 * e ^ {-x ^ 2}) = 0$$
+
+Nimelt, kui suvalist lõpmatust ruudustada, on tulemuseks lõpmatus ja kui lõpmatusega mittelõpmatust jagada, on piirväärtuseks *null*. Seetõttu on funktsiooni asümptoot *y = 0*.
+
+Funktsiooni graafik näeb välja selline:
+
+```{r}
+plot(1, 
+     xlim = c(-2, 2), ylim = c(-4, 1),
+     type = "n", 
+     main = expression(-frac(3.5,e ^ x ^ 2)),
+     ylab = "y", xlab = "x")
+abline(h = 0)
+abline(v = 0)
+curve(expr = -3.5 * exp(1) ^ {-x ^ 2}, from = -2, to = 2, ylab = "y", add = TRUE, col = "blue")
+points(-1 / sqrt(2), -3.5 / sqrt(exp(1)))
+points(0, -3.5)
+points(1 / sqrt(2), -3.5 / sqrt(exp(1)))
+```
+
+## Tuletised
+
+### Esimene tuletis
+
+$$y = ln[(a + 9) * x + b] === ln((1 + 9) * x + 5) === ln(10 * x + 5)$$
+
+$$\frac{d(y)}{d(x)} = \frac{1}{10 * x + 5} * 10 === \frac{10}{10 * x + 5}$$
+
+### Teine tuletis
+
+$$y = (a + 2) * (sin(\frac{x}{2})) ^ 4 === (1 + 2) * (sin(\frac{x}{2})) ^ 4 === 3 * (sin(\frac{x}{2})) ^ 4$$
+
+$$\frac{d(y)}{d(x)} = 3 * 4 * (sin(\frac{x}{2})) ^ 3 * cos(\frac{x}{2}) * \frac{1}{2} === 6 * (sin(\frac{x}{2})) ^ 3 * cos(\frac{x}{2})$$

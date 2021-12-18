@@ -3,6 +3,8 @@ navbar:
   title: "Matemaatika"
   left:
     - text: "Funktsiooni uurimine"
-      href: index.html
+      href: test-investigating-function-derivatives.html
+    - text: "Ekstreemumülesanded"
+      href: extrema.html
     - text: "Autor"
       href: about.html
