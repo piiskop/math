@@ -4,6 +4,8 @@ navbar:
   left:
     - text: "Funktsiooni uurimine"
       href: test-investigating-function-derivatives.html
+    - text: "Funktsiooni uurimine 1"
+      href: investigating-function.html
     - text: "Ekstreemumülesanded"
       href: extrema.html
     - text: "Autor"
